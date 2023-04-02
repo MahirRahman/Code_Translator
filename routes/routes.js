@@ -26,7 +26,7 @@ async function runCompletion () {
 
 routes.route("/").get((req, res) => {
     runCompletion();
-    res.render('views/index.ejs')
+    res.render('index.ejs')
 })
 
 module.exports = routes;
