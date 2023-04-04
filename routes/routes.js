@@ -20,13 +20,17 @@ async function runCompletion () {
         presence_penalty: 0.0,
         stop: ["###"],
     });
-    console.log(response.data.choices[0].text);
-    db.insertDB(searchText, response.data.choices[0].text, new Date());
+    return response.data.choices[0].text;
+    // db.insertDB(searchText, response.data.choices[0].text, new Date());
 }
 
 routes.route("/").get((req, res) => {
-    runCompletion();
+    // runCompletion();
     res.render('index.ejs')
+})
+
+routes.get('/api/translate', function(req,res) {
+    return res.json({"data": runCompletion()});
 })
 
 module.exports = routes;
