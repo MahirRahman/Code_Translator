@@ -7,12 +7,12 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-async function runCompletion () {
-    searchText= "##### Translate this function  from Python into JavaScript\n### Python\n    \n    def sum():\n        return 1\n    \n### JavaScript"
+async function runCompletion (searchText) {
+    // searchText= "##### Translate this function  from Python into JavaScript\n### Python\n    \n"+searchText+"\n### JavaScript";
     
     const response = await openai.createCompletion({
         model: "text-davinci-003",
-        prompt: "##### Translate this function  from Python into JavaScript\n### Python\n    \n    def sum():\n        return 1\n    \n### JavaScript",
+        prompt: "##### Translate this function  from Python into JavaScript\n### Python\n    \n"    + searchText + "    \n### JavaScript",
         temperature: 0,
         max_tokens: 150,
         top_p: 1.0,
@@ -20,7 +20,9 @@ async function runCompletion () {
         presence_penalty: 0.0,
         stop: ["###"],
     });
-    return response.data.choices[0].text;
+    wow = await response.data;
+    // console.log(wow);
+    return wow;
     // db.insertDB(searchText, response.data.choices[0].text, new Date());
 }
 
@@ -30,7 +32,17 @@ routes.route("/").get((req, res) => {
 })
 
 routes.get('/api/translate', function(req,res) {
-    return res.json({"data": runCompletion()});
-})
+    searchText = req.query.txt;
+    data = runCompletion(searchText);
+    data.then(function(x) {
+        console.log(x);
+        return res.send(x.choices[0].text);
+    })
+    // console.log(data);
+});
+
+routes.get('/wow', function(req,res) {
+    res.render('wow.ejs')
+});
 
 module.exports = routes;
