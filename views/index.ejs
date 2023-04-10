@@ -13,18 +13,36 @@
     <body>
 
         <h1 class="text-center py-5">Code Translator</h1>
-        <p id="demo" class="text-center">Place the function that you want to translate inside the text box and what for the magic!</p>
+        <p id="demo" class="text-center">Place the function that you want to translate inside the text box and wait for the magic!</p>
         <form id="codeform">
+            <div id="language-selector">
+                <label for="language-from">Translate from </label>
+                <select name="language-from" id="language-from">
+                    <option value="java">Java</option>
+                    <option value="python">Python</option>
+                    <option value="lua">Lua</option>
+                    <option value="cpp">C++</option>
+                    <option value="javascript">JavaScript</option>
+                </select>
+                <label for="language-to"> to </label>
+                <select name="language-to" id="language-to">
+                    <option value="Java">Java</option>
+                    <option value="Python">Python</option>
+                    <option value="Lua">Lua</option>
+                    <option value="C++">C++</option>
+                    <option value="Javascript">JavaScript</option>
+                </select>
+            </div>
             <div class="container">
                 <div class="row pb-5">
             <textarea class="lined" id="given_code" name="given_code" placeholder="Paste code here" rows="20" cols="60"></textarea>
             </div>
             <div class="row pb-5">
-            <button id="submit" type="submit" class="btn btn-primary">Convert from Python to JavaScript</button>
+            <button id="submit" type="submit" class="btn btn-primary">Convert Code</button>
                 </div></div>
         </form>
         <div class="container form-group pb-5"> 
-            <label for="result" class="form-control"><b>Result:</b></label>
+            <label for="result" class="form-control"><b>Result</b></label>
             <textarea class="lined" id="result" name="result" rows ="20" cols="60"></textarea>
         </div>
 

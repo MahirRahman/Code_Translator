@@ -7,12 +7,12 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-async function runCompletion (searchText) {
+async function runCompletion (searchText, languageFrom, languageTo) {
     // searchText= "##### Translate this function  from Python into JavaScript\n### Python\n    \n"+searchText+"\n### JavaScript";
     
     const response = await openai.createCompletion({
         model: "text-davinci-003",
-        prompt: "##### Translate this function  from Python into JavaScript\n### Python\n    \n"    + searchText + "    \n### JavaScript",
+        prompt: "##### Translate this function  from " + languageFrom + " into " + languageTo + "\n### " + languageFrom + "\n    \n"    + searchText + "    \n### " + languageTo,
         temperature: 0,
         max_tokens: 150,
         top_p: 1.0,
@@ -33,7 +33,9 @@ routes.route("/").get((req, res) => {
 
 routes.get('/api/translate', function(req,res) {
     searchText = req.query.txt;
-    data = runCompletion(searchText);
+    let languageFrom = req.query.from;
+    let languageTo = req.query.to;
+    data = runCompletion(searchText, languageFrom, languageTo);
     data.then(function(x) {
         console.log(x);
         return res.send(x.choices[0].text);
