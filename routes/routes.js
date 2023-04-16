@@ -43,6 +43,12 @@ routes.get('/api/translate', function(req,res) {
     // console.log(data);
 });
 
+routes.route("/history").get((req, res) => {
+        db.display(function(x){
+            res.render('history.ejs', {data: x});
+         });
+    });
+
 routes.get('/wow', function(req,res) {
     res.render('wow.ejs')
 });

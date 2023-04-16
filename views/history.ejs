@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>History Page</title>
+    </head>
+    <body>
+        <div class="history-table">
+    <table class="history-table_table">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Input</th>
+                <th>Translation</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+
+        <tr>
+            <% data.map((entry)=> { %>
+                <td><%= entry.id %></td>
+                <td><%= entry.searchText %></td>
+                <td><%= entry.result %></td>
+                <td><%= entry.date %></td>
+        </tr>
+    <% }) %>
+    </table>
+        </div>
+    </body>
+
+</html>

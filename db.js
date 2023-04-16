@@ -49,16 +49,35 @@ function insertDB(searchText, result, date) {
     });
 }
 
-
-new sqlite3.Database('./app.db', sqlite3.OPEN_READWRITE, (err) => {
-    if (err && err.code == "SQLITE_CANTOPEN") {
-        createDatabase();
-        return;
-        } else if (err) {
+function display(callback) {
+    let res = [];
+    var db = new sqlite3.Database('app.db', (err) => {
+        if (err) {
             console.log("Getting error " + err);
             exit(1);
-    }
-    // runQueries(db);
-});
+        }
+        let sql = 'SELECT * FROM history';
+            db.each(sql,(err, rows ) => {
+                if (err) {
+                    reject(err);
+                }
+                res.push(rows);
+            },function(){
+                db.close();
+                callback(res);
+            });
+        });
+}
 
-module.exports = { insertDB }
+// new sqlite3.Database('./app.db', sqlite3.OPEN_READWRITE, (err) => {
+//     if (err && err.code == "SQLITE_CANTOPEN") {
+//         createDatabase();
+//         return;
+//         } else if (err) {
+//             console.log("Getting error " + err);
+//             exit(1);
+//     }
+//     // runQueries(db);
+// });
+
+module.exports = { display }
