@@ -48,7 +48,7 @@ routes.get('/api/translate', checkAuthenticated, function(req,res) {
     // console.log(data);
 });
 
-routes.get("/history").get(checkAuthenticated, (req, res) => {
+routes.get("/history", checkAuthenticated, (req, res) => {
         db.display(function(x){
             res.render('history.ejs', {data: x});
          });
