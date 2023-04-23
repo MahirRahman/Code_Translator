@@ -10,17 +10,14 @@
     <body>
         <div id="login-register">
             <h1>Login</h1>
-            <% if (messages.error)  { %>
-                <%= messages.error %>
-            <% } %>
-            <form action="/login" method="POST">
+            <form action="/login/password" method="POST">
                 <div>
-                    <label for="name">Username</label>
-                    <input type="text" id="name" name="name" required>
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
                 </div>
                 <div>
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required>
+                    <label for="current-password">Password</label>
+                    <input type="password" id="current-password" name="password" required>
                 </div>
                 <button type="submit">Log In</button>
             </form>
