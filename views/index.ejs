@@ -11,9 +11,13 @@
         <title>team_seven Code Translator</title>
     </head>
     <body>
-        <form action="/logout" method="post">
-            <button class="logout" type="submit">Sign out</button>
-        </form>
+        <div id="nav">
+            <a href="./"><button> Home </button></a>
+            <a href="./history"><button> History </button></a>
+            <form action="/logout" method="post">
+                <button class="logout" type="submit">Log Out</button>
+            </form>
+        </div>
         <h1 class="text-center py-5">Code Translator</h1>
         <p id="demo" class="text-center">Place the function that you want to translate inside the text box and wait for the magic!</p>
         <form id="codeform">
