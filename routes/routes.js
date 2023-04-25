@@ -34,6 +34,8 @@ async function runCompletion (searchText, languageFrom, languageTo) {
         stop: ["###"],
     });
     wow = await response.data;
+    console.log(wow.choices[0].text);
+    db.insertDB(searchText, wow.choices[0].text, new Date());
     // console.log(wow);
     return wow;
     // db.insertDB(searchText, response.data.choices[0].text, new Date());
@@ -53,7 +55,7 @@ routes.get('/api/translate', checkAuthenticated, function(req,res) {
     let languageTo = req.query.to;
     data = runCompletion(searchText, languageFrom, languageTo);
     data.then(function(x) {
-        console.log(x);
+        // console.log(x);
         return res.send(x.choices[0].text);
     })
     // console.log(data);
