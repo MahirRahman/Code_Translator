@@ -1,3 +1,9 @@
+// team_seven Code Translator
+// 
+// routes.js - Application routes
+// History and translation routes for the application server to use
+
+// require modules for use
 const express = require('express');
 const routes = express.Router();
 const bcrypt = require('bcrypt');
@@ -10,8 +16,10 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
+// use statement
 routes.use(express.urlencoded({ extended: false }));
 
+// Function to query a code translation to the api
 async function runCompletion (searchText, languageFrom, languageTo) {
     // searchText= "##### Translate this function  from Python into JavaScript\n### Python\n    \n"+searchText+"\n### JavaScript";
     
@@ -31,11 +39,14 @@ async function runCompletion (searchText, languageFrom, languageTo) {
     // db.insertDB(searchText, response.data.choices[0].text, new Date());
 }
 
+// Route to go to homepage, if not authenticated, redirect to
+// the login page
 routes.route("/").get(checkAuthenticated, (req, res) => {
     // runCompletion();
     res.render('index.ejs')
 })
 
+// Route that interacts with the api to query a translation
 routes.get('/api/translate', checkAuthenticated, function(req,res) {
     searchText = req.query.txt;
     let languageFrom = req.query.from;
@@ -48,12 +59,14 @@ routes.get('/api/translate', checkAuthenticated, function(req,res) {
     // console.log(data);
 });
 
+// Route that gets and displays the history database in a page
 routes.get("/history", checkAuthenticated, (req, res) => {
         db.display(function(x){
             res.render('history.ejs', {data: x});
          });
 });
 
+// function that determines whether or not a user is authenticated
 function checkAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         return next()

@@ -1,3 +1,9 @@
+// team_seven Code Translator
+//
+// db1.js - User database application
+// This application will handle all of the SQL operations necessary for 
+// registration in the user database.
+
 var sqlite3 = require('sqlite3');
 var mkdirp = require('mkdirp');
 var crypto = require('crypto');

@@ -1,3 +1,9 @@
+// team_seven Code Translator
+//
+// db.js - History database application
+// This application will handle all of the SQL operations necessary for 
+// the history page and queries.
+
 var sqlite3 = require('sqlite3');
 
 function runQueries(db) {

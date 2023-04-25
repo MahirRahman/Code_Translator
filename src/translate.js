@@ -1,3 +1,8 @@
+// team_seven Code Translator
+//
+// translate.js
+// jquery for html drop-down selection to interact with code translation
+
 $(document).ready(function(){
     $('#codeform').submit(function(e) {
         e.preventDefault();
