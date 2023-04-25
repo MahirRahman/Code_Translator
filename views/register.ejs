@@ -21,6 +21,9 @@
   <body>
     <div id="login-register">
       <h1>Register</h1>
+      <% if (err === 'This username is taken. Choose a different one.') { %>
+        <%= err %>
+    <% } %>
       <form action="/signup" method="POST">
         <div>
           <label for="username">Username</label>

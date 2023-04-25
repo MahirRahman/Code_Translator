@@ -6,6 +6,7 @@
 
 // require modules for use
 var express = require('express');
+var flash = require('express-flash');
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
 var crypto = require('crypto');
@@ -58,7 +59,8 @@ router.get('/login', checkNotAuthenticated, function(req, res, next) {
 // to homepage, if unsuccessful, redirect back to login
 router.post('/login/password', passport.authenticate('local', {
     successRedirect: '/',
-    failureRedirect: '/login'
+    failureRedirect: '/login',
+    failureFlash: true
 }));
 
 // Route for user logout submission
@@ -71,7 +73,7 @@ router.post('/logout', function(req, res, next) {
 
 // Route to access register page, if authenticated, redirect to homepage
 router.get('/register', checkNotAuthenticated, function(req, res, next) {
-    res.render('register');
+    res.render('register', {err: ''});
 });
 
 // Route for user signup submission, if successful, redirect to homepage and log
@@ -86,7 +88,7 @@ router.post('/signup', function(req, res, next) {
             hashedPassword,
             salt
         ], function(err) {
-            if (err) { return next(err); }
+            if (err) { return res.render('register', {err: 'This username is taken. Choose a different one.'}); }
             var user = {
                 id: this.lastID,
                 username: req.body.username

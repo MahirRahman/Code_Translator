@@ -13,6 +13,7 @@ const indexRouter = require('./routes/routes');
 const authRouter = require('./routes/auth');
 const logger = require('morgan');
 const passport = require('passport');
+const flash = require('express-flash')
 const session = require('express-session');
 
 // Connect SQLite
@@ -29,6 +30,7 @@ app.set('views', path.join(__dirname, '/views'));
 // Use statements
 app.use(express.json());
 app.use(express.static(__dirname));
+app.use(flash());
 app.use(session({
     secret: 'keyboard cat',
     resave: false,

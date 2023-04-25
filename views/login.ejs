@@ -16,6 +16,9 @@
     <body>
         <div id="login-register">
             <h1>Login</h1>
+            <% if (messages.error) { %>
+                <%= messages.error %>
+            <% } %>
             <form action="/login/password" method="POST">
                 <div>
                     <label for="username">Username</label>
