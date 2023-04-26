@@ -5,6 +5,20 @@
   CSS Styles for the multiple HTML pages used in the application
 */
 
+#result {
+	width: 100%;
+}
+
+#copy {
+	background-color: #0D6EFD;
+	color: white;
+	border: none;
+	border-radius: 8px;
+	width: 180px;
+	height: 48px;
+	margin-top: 16px;
+}
+
 #language-selector {
 	text-align: center;
 	padding-bottom: 24px;

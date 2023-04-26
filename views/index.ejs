@@ -56,12 +56,25 @@
         <div class="container form-group pb-5"> 
             <label for="result" class="form-control"><b>Result</b></label>
             <textarea class="lined" id="result" name="result" rows ="20" cols="60"></textarea>
+            <button id="copy" onclick="copyToClipboard()">Copy to Clipboard</button>
         </div>
 
         <script>
-            $(function() {
-                $(".lined").linedtextarea();
-            });
-            </script>
+          $(function() {
+            $(".lined").linedtextarea();
+          });
+
+           function copyToClipboard() {
+            // Get the text field
+            var copyText = document.getElementById("result");
+
+            // Select the text field
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); // For mobile devices
+
+            // Copy the text inside the text field
+            navigator.clipboard.writeText(copyText.value);
+          }
+        </script>
     </body>
 </html>
