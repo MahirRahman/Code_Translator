@@ -35,7 +35,15 @@ async function runCompletion (searchText, languageFrom, languageTo) {
     });
     wow = await response.data;
     console.log(wow.choices[0].text);
-    db.insertDB(searchText, wow.choices[0].text, new Date());
+
+    // Format date before inserting into db
+    let objectDate = new Date();
+    let day = objectDate.getDate();
+    let month = objectDate.getMonth();
+    let year = objectDate.getFullYear();
+    let formatDate = month + "/" + day + "/" + year;
+
+    db.insertDB(searchText, wow.choices[0].text, formatDate);
     // console.log(wow);
     return wow;
     // db.insertDB(searchText, response.data.choices[0].text, new Date());
