@@ -39,7 +39,7 @@ async function runCompletion (searchText, languageFrom, languageTo) {
     // Format date before inserting into db
     let objectDate = new Date();
     let day = objectDate.getDate();
-    let month = objectDate.getMonth();
+    let month = objectDate.getMonth() + 1;
     let year = objectDate.getFullYear();
     let formatDate = month + "/" + day + "/" + year;
 
