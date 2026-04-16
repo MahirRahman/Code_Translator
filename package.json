@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "ajax-request": "^1.0.0",
-    "axios": "^1.3.4",
+    "axios": "^1.15.0",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.2",
     "connect-sqlite3": "^0.9.13",
@@ -12,7 +12,7 @@
     "express-session": "^1.17.3",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.22",
-    "openai": "^3.2.1",
+    "openai": "^6.34.0",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
